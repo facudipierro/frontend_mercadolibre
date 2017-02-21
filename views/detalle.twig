@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Detalle - Test Frontend - Facundo Di Pierro - Mercadolibre</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	{% include 'head.twig' %}
+</head>
+<body>
+	<div class="container-fluid">
+		
+		{% include 'search.twig' %}
+
+		<div class="container listado-resultados">
+			<div class="wrap-detalle">
+				<div class="row">
+					<div class="col-md-8 col-sm-6 col-xs-12">
+						<img src="{{ producto.pictures[0].url }}" width="680" alt="">
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="detalle-condicion">
+							{% if producto.condition == 'new' %}
+							Nuevo
+							{% else %}
+							Usado
+							{% endif %}
+							- {{ producto.sold_quantity }} vendidos
+						</div>
+						<div class="detalle-titulo">{{ producto.title }}</div>
+						<div class="detalle-precio">
+							${{ split_money(producto.price)}}
+						</div>
+						<button class="detalle-bt-comprar">Comprar</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="detalle-titulo-descripcion">
+							Descripción del Producto
+						</div>
+						<div class="detalle-descripcion">
+							{% if publicacion.text != '' %}
+								{{ publicacion.text }}
+							{% else %}
+								{{ publicacion.plain_text }}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+	</div>
+</body>
+</html>

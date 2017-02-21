@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Listado - Test Frontend - Facundo Di Pierro - Mercadolibre</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	{% include 'head.twig' %}
+</head>
+<body>
+	<div class="container-fluid">
+		
+		{% include 'search.twig' %}
+
+		<div class="container listado-resultados">
+			<!-- <div class="row breadcrumbs">
+				<div class="col-md-12">
+					<ul>
+						<li><a href="#">Electrónica, Audio y Video</a> ></li>
+						<li><a href="#">iPod</a> ></li>
+						<li><a href="#">Reproductores</a> ></li>
+						<li><a href="#">iPod Touch</a> ></li>
+						<li><a href="#">32 GB</a></li>
+					</ul>
+				</div>
+			</div> -->
+			<div class="wrap-listado">
+				{% for producto in productos %}
+					<div class="row">
+						<div class="col-md-2 col-sm-3 listado-foto">
+							<a href="/items/{{ producto.id }}"><img src="{{ producto.thumbnail }}" alt="{{ producto.title }}"></a>
+						</div>
+						<div class="col-md-5 col-sm-6">
+							<div class="listado-precio">
+								${{ producto.price }} 
+								{% if producto.shipping.free_shipping == true %}
+								<i class="icon-shipping"></i>
+								{% endif %}
+							</div>
+							<div class="listado-titulo">
+								<a href="/items/{{ producto.id }}">{{ producto.title }}</a>
+							</div>
+						</div>
+						<div class="col-md-2 col-md-offset-2 col-sm-3">
+							<div class="listado-ubicacion">
+								{{ producto.address.city_name }}
+							</div>
+						</div>
+					</div>
+					{% if loop.index < productos|length %}
+						<div class="listado-producto"></div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
